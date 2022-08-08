@@ -9,14 +9,14 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class testGithub {
+public class TestGithub {
     @BeforeAll
     static void beforeAll(){
-       Configuration.browserSize = "1800x1000";
-       open("https://github.com/");
+        open("https://github.com/");
     }
     @Test
     void findExampleForJUnit(){
+        Configuration.browserSize = "1800x1000";
         $("[data-test-selector=nav-search-input]").setValue("Selenide").pressEnter();
         $$("ul.repo-list li").first().$("a").click();
         $("#repository-container-header").shouldHave(text("selenide / selenide"));
@@ -24,6 +24,4 @@ public class testGithub {
         $(byLinkText("Soft assertions")).click();
         $(".markdown-body").shouldHave(text("3. Using JUnit5 extend test class"));
     }
-
-
 }
